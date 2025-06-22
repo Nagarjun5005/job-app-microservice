@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.nagarjun.jobms</groupId>
-	<artifactId>job-microservice-project</artifactId>
+	<artifactId>job-microservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>job-microservice-project</name>
 	<description>job microservice project</description>

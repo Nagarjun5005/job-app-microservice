@@ -7,8 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Review-microservice" />
-        <module name="job-microservice-project" />
         <module name="company-microservice" />
+        <module name="job-microservice" />
       </profile>
     </annotationProcessing>
   </component>
@@ -16,7 +16,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Review-microservice" options="-parameters" />
       <module name="company-microservice" options="-parameters" />
-      <module name="job-microservice-project" options="-parameters" />
+      <module name="job-microservice" options="-parameters" />
     </option>
   </component>
 </project>
