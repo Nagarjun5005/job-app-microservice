@@ -2,6 +2,7 @@ package com.nagarjun.jobms.job;
 
 import com.nagarjun.jobms.dto.JobCompanyDTO;
 import com.nagarjun.jobms.exchange.Company;
+import com.nagarjun.jobms.mapper.JobCompanyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -33,9 +34,8 @@ public class JobServiceImpl implements JobService {
     }
 
     private JobCompanyDTO convertToDTO(Job job){
-        JobCompanyDTO jobCompanyDTO=new JobCompanyDTO();
-        jobCompanyDTO.setJob(job);
         Company company= restTemplate.getForObject("http://COMPANY-SERVICE:8081/api/companies/"+job.getCompanyId(), Company.class);
+        JobCompanyDTO jobCompanyDTO= JobCompanyMapper.jobCompanyMapper(job,company);
         jobCompanyDTO.setCompany(company);
         return jobCompanyDTO;
 
