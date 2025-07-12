@@ -1,9 +1,11 @@
 package com.nagarjun.jobms.dto;
 
 import com.nagarjun.jobms.exchange.Company;
-import com.nagarjun.jobms.job.Job;
+import com.nagarjun.jobms.exchange.Review;
 
-public class JobCompanyDTO {
+import java.util.List;
+
+public class JobDTO {
 
 
     private Long id;
@@ -13,6 +15,15 @@ public class JobCompanyDTO {
     private  double minSalary;
     private String location;
     private Company company;
+    private List<Review> reviews;
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 
     public Company getCompany() {
         return company;

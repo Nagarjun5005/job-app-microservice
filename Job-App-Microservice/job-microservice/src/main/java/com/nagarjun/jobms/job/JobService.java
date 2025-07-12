@@ -1,14 +1,14 @@
 package com.nagarjun.jobms.job;
 
-import com.nagarjun.jobms.dto.JobCompanyDTO;
+import com.nagarjun.jobms.dto.JobDTO;
 
 import java.util.List;
 
 public interface JobService {
 
-    List<JobCompanyDTO> findAllJobs();
+    List<JobDTO> findAllJobs();
 
-    JobCompanyDTO findJobById(Long id);
+    JobDTO findJobById(Long id);
 
     void createJob(Job job);
 

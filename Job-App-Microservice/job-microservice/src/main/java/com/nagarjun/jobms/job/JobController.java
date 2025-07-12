@@ -1,7 +1,7 @@
 package com.nagarjun.jobms.job;
 
 
-import com.nagarjun.jobms.dto.JobCompanyDTO;
+import com.nagarjun.jobms.dto.JobDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +21,8 @@ public class JobController {
 
 
     @GetMapping()
-    public ResponseEntity<List<JobCompanyDTO>> findAllJobs() {
-        List<JobCompanyDTO> jobList = jobService.findAllJobs();
+    public ResponseEntity<List<JobDTO>> findAllJobs() {
+        List<JobDTO> jobList = jobService.findAllJobs();
         return new ResponseEntity<>(jobList, HttpStatus.OK);
     }
 
@@ -35,8 +35,8 @@ public class JobController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<JobCompanyDTO> findJobById(@PathVariable Long id) {
-        JobCompanyDTO found = jobService.findJobById(id);
+    public ResponseEntity<JobDTO> findJobById(@PathVariable Long id) {
+        JobDTO found = jobService.findJobById(id);
         if (found != null) {
             return new ResponseEntity<>(found, HttpStatus.OK);
         }
