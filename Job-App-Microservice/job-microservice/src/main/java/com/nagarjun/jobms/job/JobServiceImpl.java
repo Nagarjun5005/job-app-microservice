@@ -7,6 +7,7 @@ import com.nagarjun.jobms.exchange.Company;
 import com.nagarjun.jobms.exchange.Review;
 import com.nagarjun.jobms.mapper.JobMapper;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,8 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    @Retry(name="companyBreaker",fallbackMethod = "companyBreakerFallback")
+    @Retry(name="companyRetry",fallbackMethod = "companyBreakerFallback")
+    @RateLimiter(name="companyLimiter",fallbackMethod = "rateLimitFallback")
     @CircuitBreaker(name = "companyBreaker",fallbackMethod = "companyBreakerFallback")
     public List<JobDTO> findAllJobs() {
         List<Job>jobList=jobRepository.findAll();
@@ -49,6 +51,10 @@ public class JobServiceImpl implements JobService {
         List<String>list=new ArrayList<>();
         list.add("dummy data");
         return list;
+    }
+
+    public String rateLimitFallback(Throwable t) {
+        return "Too many requests - please try again later.";
     }
 
     private JobDTO convertToDTO(Job job){
